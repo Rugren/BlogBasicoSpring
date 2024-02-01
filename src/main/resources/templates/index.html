@@ -11,28 +11,20 @@
           crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Registration and Login System</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/login}">Login</a>
-                </li>
-            </ul>
+    <h1>Bienvenido a mi blog</h1>
+    <div class="container">
+        <div class="row" th:each="articulo:${listaArticulos}">
+            <div class="col col-8" th:text="${articulo.titulo}">
+                Título del artículo
+                <a th:href=" '/detalle/' + ${articulo.id}" th:text="${articulo.titulo}"></a>
+            </div>
+            <div class="col col-2" th:text="${articulo.fecha}">
+            </div>
+            <div class="col col-2">
+                <a th:href=" '/detalle/' + ${articulo.id}">Ampliar</a>
+            </div>
         </div>
     </div>
-</nav>
-<div class="container">
-    <div class="row">
-        <h1 class="text-center"> Welcome to Registration and Login System </h1>
-    </div>
-</div>
+
 </body>
 </html>

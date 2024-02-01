@@ -29,7 +29,8 @@ public class SpringSecurity {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/index").permitAll()
+                                .requestMatchers("/index", "/", "/inicio", "/home").permitAll()
+                                .requestMatchers("/detalle/**").permitAll()
                                 .requestMatchers("/crud/articulos").authenticated()
                                 .requestMatchers("/crud/articulos/altas").authenticated()
                                 .requestMatchers("/crud/articulos/altas/submit").authenticated()
