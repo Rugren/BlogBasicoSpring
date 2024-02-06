@@ -34,14 +34,18 @@ public class SpringSecurity {
                                 .requestMatchers("/crud/articulos").authenticated()
                                 .requestMatchers("/crud/articulos/altas").authenticated()
                                 .requestMatchers("/crud/articulos/altas/submit").authenticated()
-                                .requestMatchers("/crud/articulos/modificar").authenticated()
-                                .requestMatchers("/crud/articulos/modificar/submit").authenticated()
+                                // .requestMatchers("/crud/articulos/modificar").authenticated() // estaba mal, corregido en la siguiente línea: con /** (copia de nuevo) /{id} (también copia de nuevo)
+                                .requestMatchers("/crud/articulos/modificar/{id}").authenticated()
+                                .requestMatchers("/crud/articulos/modificar/submit").authenticated() // con /modificar/{id}/submit") tampoco va, me sigue creado otro al modificarlo.
+                                .requestMatchers("/crud/articulos/eliminar/{id}").authenticated() // añadido el borrar (no estaba hecho).
                                 .requestMatchers("/users").hasRole("ADMIN")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/users")
+                                // (estaba esta ruta mal, que nos mandaba a usuarios cuando nos registrábamos
+                                // .defaultSuccessUrl("/users")
+                                .defaultSuccessUrl("/index")
                                 .permitAll()
                 ).logout(
                         logout -> logout
